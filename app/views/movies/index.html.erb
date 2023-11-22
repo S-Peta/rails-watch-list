@@ -1,0 +1,13 @@
+<div class="container">
+  <div>
+    <h1>Movies</h1>
+    <p><%= @movies.each do |movie| %></p>
+    <div>
+      <%= movie.title %>
+      <%= movie.overview %>
+      <%= movie.poster_url %>
+      <%= movie.rating %>
+    <% end %>
+    </div>
+  </div>
+</div>

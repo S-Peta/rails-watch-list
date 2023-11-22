@@ -1,0 +1,17 @@
+// Import page-specific CSS files here.
+@import "home";
+
+.card-category {
+  background-image: url(path-to-cloudinary-image);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.banner-list {
+  margin-bottom: 50px;
+  h1 {
+    display: flex;
+    position: relative;
+    justify-content: center;
+  }
+}

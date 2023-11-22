@@ -1,0 +1,58 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <a class="navbar-brand" href="#">
+    <img src="https://img.freepik.com/premium-vector/popcorn-icon-illustration-isolated_385450-88.jpg?w=826" alt="icone-popcorn">
+  </a>
+</div>
+
+<div class="banner-list card-category">
+  <% if @list.photo.attached?  %>
+    <%= cl_image_tag @list.photo.key, crop: :pad, class:"card-category"  %>
+  <% else %>
+    <div>Imagem fixa</div>
+  <% end %>
+  <h1><%= @list.name %></h1>
+</div>
+
+<div class="container">
+  <div class="card-body">
+    <% @list.bookmarks.each do |bookmark| %>
+    <div class="card" style="width: 18rem;" >
+      <h3><%= bookmark.movie.title %></h3>
+      <p> Comment: <%= bookmark.comment %></p>
+      <p><%= link_to 'Remove movie', bookmark_path(bookmark), data: {turbo_method: "delete", turbo_confirm: "Are you shure?"} %></p>
+      <hr>
+    </div>
+  </div>
+    <% end %>
+
+  <div>
+    <h5>Add a movie</h5>
+    <%= simple_form_for [@list, @bookmark] do |f| %>
+      <%= f.association :movie %>
+      <%= f.input :comment %>
+      <%= f.submit 'Add movie' %>
+    <% end %>
+  </div>
+  </div>
+
+  <hr>
+
+  <div>
+    <h3>List Reviews</h3>
+    <% @list.reviews.each do |review| %>
+      <%= review.content %>
+      <hr>
+    <% end %>
+  </div>
+
+  <div>
+  <h5>Add a review</h5>
+  <%= simple_form_for [@list, @review] do |f| %>
+    <%= f.input :content %>
+    <%= f.submit 'Add a review to this list' %>
+    <% end %>
+  </div>
+
+  <%= link_to 'Delete list', list_path(@list), data: {turbo_method: "delete", turbo_confirm: "Are you shure?"} %></p>
+  <%= link_to 'Back to all lists', lists_path %>
+</div>
